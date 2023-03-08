@@ -1,0 +1,13 @@
+[book]
+authors = ["qaqland"]
+language = "zh-Hans"
+multilingual = false
+src = "src"
+title = "qaqLand"
+
+
+[output.html]
+git-repository-url = "https://github.com/qaqland/qaqland"
+edit-url-template = "https://github.com/qaqland/qaqland/edit/main/{path}"
+cname = "qaq.land"
+no-section-label = true
