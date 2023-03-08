@@ -1,0 +1,287 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>chmod - qaqLand</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html">About</a></li><li class="chapter-item expanded affix "><li class="part-title">Alpine Linux</li><li class="chapter-item expanded affix "><li class="part-title">BusyBox</li><li class="chapter-item expanded "><a href="../busybox/addgroup.html">addgroup</a></li><li class="chapter-item expanded "><a href="../busybox/adduser.html">adduser</a></li><li class="chapter-item expanded "><a href="../busybox/arch.html">arch</a></li><li class="chapter-item expanded "><a href="../busybox/base64.html">base64</a></li><li class="chapter-item expanded "><a href="../busybox/basename.html">basename</a></li><li class="chapter-item expanded "><a href="../busybox/cal.html">cal</a></li><li class="chapter-item expanded "><a href="../busybox/cat.html">cat</a></li><li class="chapter-item expanded "><a href="../busybox/chmod.html" class="active">chmod</a></li><li class="chapter-item expanded "><a href="../busybox/chpasswd.html">chpasswd</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">qaqLand</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/qaqland/qaqland" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/qaqland/qaqland/edit/main/src/busybox/chmod.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="chmod"><a class="header" href="#chmod">chmod</a></h1>
+<pre><code class="language-sh">$ chmod [-Rcvf] MODE[,MODE]... FILE...
+</code></pre>
+<p>MODE is octal number (bit pattern sstrwxrwxrwx) or [ugoa]{+|-|=}[rwxXst]</p>
+<ul>
+<li>修改文件及文件夹的访问权限</li>
+<li>MODE 可以是 0644 八进制语法，也可以是 u+x 符号语法</li>
+</ul>
+<pre><code class="language-sh">-R      Recurse             递归调用文件夹子文件
+-c      List changed files
+-v      Verbose
+-f      Hide errors
+</code></pre>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<p>使用 <code>ls</code> 命令的查看文件或目录的属性</p>
+<pre><code class="language-sh">localhost:~$ ls -al
+total 32
+drwxr-sr-x    4 qaq      qaq           4096 Jan 15 10:21 .
+drwxr-xr-x    4 root     root          4096 Jan  7 15:14 ..
+-rw-------    1 qaq      qaq           5342 Jan 15 10:21 .ash_history
+-rw-------    1 qaq      qaq            326 Jan 11 17:00 .bash_history
+drwx--S---    4 qaq      qaq           4096 Jan  7 00:23 .config
+-rw-------    1 qaq      qaq             20 Jan 15 10:21 .lesshst
+drwx--S---    2 qaq      qaq           4096 Jan  6 23:32 .ssh
+</code></pre>
+<h3 id="ugoa"><a class="header" href="#ugoa">ugoa</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>谁</th><th>用户类型</th><th>说明</th></tr></thead><tbody>
+<tr><td>u</td><td>user</td><td>文件所有者</td></tr>
+<tr><td>g</td><td>group</td><td>文件所有者所在组</td></tr>
+<tr><td>o</td><td>others</td><td>所有其他用户</td></tr>
+<tr><td>a</td><td>all</td><td>所用用户, 相当于 ugo</td></tr>
+</tbody></table>
+</div>
+<h3 id="rwxxst"><a class="header" href="#rwxxst">rwxXst</a></h3>
+<p>某一单独的文件对某一单独的用户而言，只有 rwx 三种权限</p>
+<ul>
+<li>r 可读</li>
+<li>w 可写</li>
+<li>x 可执行（如果是目录就是可访问）</li>
+<li>X 如果存在可执行权限（任意用户）那么等同于 x</li>
+<li>s setuid/gid</li>
+<li>t sticky</li>
+</ul>
+<p>X 能避免给文本数据 <code>123.txt</code> 可执行权限，它只关注已经存在可执行权限的文件。常用于递归调用</p>
+<pre><code class="language-sh">localhost:~$ chmod u+X 123
+localhost:~$ ls -l
+total 4
+-rw-r--r--    1 qaq      qaq              4 Jan 15 10:36 123
+
+localhost:~$ chmod g+x 123
+localhost:~$ ls -l
+total 4
+-rw-r-xr--    1 qaq      qaq              4 Jan 15 10:36 123
+
+localhost:~$ chmod u+X 123
+localhost:~$ ls -l
+total 4
+-rwxr-xr--    1 qaq      qaq              4 Jan 15 10:36 123
+</code></pre>
+<p>s 预设了执行该程序时的 User ID/Group ID。
+例如保存用户密码的文件为 root，但是修改当前用户密码不需要 root 权限</p>
+<pre><code class="language-sh">localhost:~$ ls -l /usr/bin/passwd
+lrwxrwxrwx    1 root     root            11 Jan 15 11:23 /usr/bin/passwd -&gt; /bin/bbsuid
+localhost:~$ ls -l  /bin/bbsuid
+---s--x--x    1 root     root         14160 Nov 19 18:13 /bin/bbsuid
+# 这里 bbsuid 作为一个 wrapper 再去调用 busybox 修改密码
+
+# 保存用户和密码的文件需要 root
+localhost:~$ ls -l /etc/passwd
+-rw-r--r--    1 root     root          1355 Jan  7 15:14 /etc/passwd
+localhost:~$ ls -l /etc/shadow
+-rw-r-----    1 root     shadow         742 Jan  7 15:14 shadow
+</code></pre>
+<p>t 保护文件所有者，防止普通用户删除或移动其他用户的文件（？）</p>
+<pre><code class="language-sh">localhost:~$ ls -l / | grep tmp
+drwxrwxrwt    5 root     root           100 Jan 15 11:23 tmp
+</code></pre>
+<h2 id="see-also"><a class="header" href="#see-also">See also</a></h2>
+<p><a href="./ls.html">ls</a>,
+<a href="https://www.runoob.com/linux/linux-comm-chmod.html">Linux chmod 命令 - 菜鸟教程</a>,
+<a href="https://linux.die.net/man/1/chmod">chmod(1): change file mode bits - Linux man page</a>,
+<a href="https://zh.wikipedia.org/zh-cn/Chmod">chmod - 维基百科</a>,
+<a href="http://www.wellho.net/mouth/1902_sstrwxrwxrwx-Unix-and-Linux-file-permissions.html">sstrwxrwxrwx - Unix and Linux file permissions</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../busybox/cat.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../busybox/chpasswd.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../busybox/cat.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../busybox/chpasswd.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
