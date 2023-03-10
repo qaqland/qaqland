@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>About - qaqLand</title>
+        <title>Codebrowser - qaqLand</title>
 
 
         <!-- Custom HTML head -->
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html" class="active">About</a></li><li class="chapter-item expanded affix "><li class="part-title">Notes</li><li class="chapter-item expanded "><a href="codebrowser.html">Codebrowser</a></li><li class="chapter-item expanded affix "><li class="part-title">Alpine Linux</li><li class="chapter-item expanded affix "><li class="part-title">BusyBox</li><li class="chapter-item expanded "><a href="busybox/addgroup.html">addgroup</a></li><li class="chapter-item expanded "><a href="busybox/adduser.html">adduser</a></li><li class="chapter-item expanded "><a href="busybox/arch.html">arch</a></li><li class="chapter-item expanded "><a href="busybox/base64.html">base64</a></li><li class="chapter-item expanded "><a href="busybox/basename.html">basename</a></li><li class="chapter-item expanded "><a href="busybox/cal.html">cal</a></li><li class="chapter-item expanded "><a href="busybox/cat.html">cat</a></li><li class="chapter-item expanded "><a href="busybox/chmod.html">chmod</a></li><li class="chapter-item expanded "><a href="busybox/chpasswd.html">chpasswd</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html">About</a></li><li class="chapter-item expanded affix "><li class="part-title">Notes</li><li class="chapter-item expanded "><a href="codebrowser.html" class="active">Codebrowser</a></li><li class="chapter-item expanded affix "><li class="part-title">Alpine Linux</li><li class="chapter-item expanded affix "><li class="part-title">BusyBox</li><li class="chapter-item expanded "><a href="busybox/addgroup.html">addgroup</a></li><li class="chapter-item expanded "><a href="busybox/adduser.html">adduser</a></li><li class="chapter-item expanded "><a href="busybox/arch.html">arch</a></li><li class="chapter-item expanded "><a href="busybox/base64.html">base64</a></li><li class="chapter-item expanded "><a href="busybox/basename.html">basename</a></li><li class="chapter-item expanded "><a href="busybox/cal.html">cal</a></li><li class="chapter-item expanded "><a href="busybox/cat.html">cat</a></li><li class="chapter-item expanded "><a href="busybox/chmod.html">chmod</a></li><li class="chapter-item expanded "><a href="busybox/chpasswd.html">chpasswd</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -121,7 +121,7 @@
                         <a href="https://github.com/qaqland/qaqland" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/qaqland/qaqland/edit/main/src/README.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/qaqland/qaqland/edit/main/src/codebrowser.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -150,21 +150,75 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="about"><a class="header" href="#about">About</a></h1>
-<p>I am qaqland :D</p>
-<p>Here are my notes!</p>
-<h2 id="matrix"><a class="header" href="#matrix">Matrix</a></h2>
-<p>Hey, talk to me on Element: <a href="https://matrix.to/#/@qaqland:mozilla.org">https://matrix.to/#/@qaqland:mozilla.org</a></p>
-<h2 id="email"><a class="header" href="#email">Email</a></h2>
-<pre><code>mailto: qaq@qaq.land
+                        <h1 id="codebrowser"><a class="header" href="#codebrowser">Codebrowser</a></h1>
+<p>项目能为 C/C++ 项目生成带有 clangd 智能提示与跳转效果的静态网页</p>
+<p>项目地址：<a href="https://github.com/KDAB/codebrowser">https://github.com/KDAB/codebrowser</a><br />
+修改主题：<a href="https://github.com/moodyhunter/codebrowser">https://github.com/moodyhunter/codebrowser</a><br />
+修改编译：<a href="https://github.com/KDAB/codebrowser/issues/107">https://github.com/KDAB/codebrowser/issues/107</a> (AlpineLinux)</p>
+<p>编译后用到的东西：</p>
+<ol>
+<li>codebrowser/generator/codebrowser_generator</li>
+<li>codebrowser/indexgenerator/codebrowser_indexgenerator</li>
+<li>codebrowser/data</li>
+</ol>
+<h2 id="codebrowser_generator"><a class="header" href="#codebrowser_generator">codebrowser_generator</a></h2>
+<pre><code class="language-sh">codebrowser_generator \
+        -a \
+        -o &lt;output_dir&gt; \
+        -b &lt;buld_dir&gt; \
+        -p &lt;projectname&gt;:&lt;source_dir&gt;[:&lt;revision&gt;] \
+        [-d &lt;data_url&gt;] \
+        [-e &lt;remote_path&gt;:&lt;source_dir&gt;:&lt;remote_url&gt;]
 </code></pre>
+<p>将源码编译解析为（包含 LSP 特效的） HTML</p>
+<ul>
+<li>-a 处理 compile_commands.json 包含的所有文件</li>
+<li>-o 生成 HTML 的输出文件夹，每个项目都会在此创建文件夹</li>
+<li>-b 指定包含有 compile_commands.json 的目录，一般源码目录相同，生成教程参考项目说明<sup class="footnote-reference"><a href="#1">1</a></sup></li>
+<li>-p 指定项目名称、源码的绝对路径、版本号（可无可有）</li>
+<li>-d 指定生成 HTML 的资源文件夹 data 的路径，默认为 <code>&lt;output_dir&gt;/data</code>（需要手动复制）</li>
+<li>-e 不懂，不管</li>
+</ul>
+<h2 id="codebrowser_indexgenerator"><a class="header" href="#codebrowser_indexgenerator">codebrowser_indexgenerator</a></h2>
+<pre><code class="language-sh">codebrowser_indexgenerator &lt;output_dir&gt; [-d data_url] [-p project_definition]
+</code></pre>
+<p>用来给上一步的 HTML 生成 index.html。</p>
+<p>参数都是上一步设置过的，此处只接上一步 -o 的 <code>&lt;output_dir&gt;</code> 即可</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-sh">
+# fn
+code_gen(){
+    BUILD=$SOURCE
+    codebrowser_generator -b $BUILD -a -o $OUTPUT -p $NAME:$SOURCE:$VERSION
+}
+
+VERSION=`git describe --always --tags`
+OUTPUT=/www/code
+
+# 1
+NAME=wld
+SOURCE=/home/qaq/wld
+code_gen
+
+# 2
+
+
+###
+codebrowser_indexgenerator $OUTPUT
+</code></pre>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>https://github.com/KDAB/codebrowser#compilation-database-compile_commandsjson</p>
+</div>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
-                            <a rel="next" href="codebrowser.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="busybox/addgroup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -174,8 +228,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-                    <a rel="next" href="codebrowser.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="busybox/addgroup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

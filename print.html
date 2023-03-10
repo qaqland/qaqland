@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html">About</a></li><li class="chapter-item expanded affix "><li class="part-title">Alpine Linux</li><li class="chapter-item expanded affix "><li class="part-title">BusyBox</li><li class="chapter-item expanded "><a href="busybox/addgroup.html">addgroup</a></li><li class="chapter-item expanded "><a href="busybox/adduser.html">adduser</a></li><li class="chapter-item expanded "><a href="busybox/arch.html">arch</a></li><li class="chapter-item expanded "><a href="busybox/base64.html">base64</a></li><li class="chapter-item expanded "><a href="busybox/basename.html">basename</a></li><li class="chapter-item expanded "><a href="busybox/cal.html">cal</a></li><li class="chapter-item expanded "><a href="busybox/cat.html">cat</a></li><li class="chapter-item expanded "><a href="busybox/chmod.html">chmod</a></li><li class="chapter-item expanded "><a href="busybox/chpasswd.html">chpasswd</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html">About</a></li><li class="chapter-item expanded affix "><li class="part-title">Notes</li><li class="chapter-item expanded "><a href="codebrowser.html">Codebrowser</a></li><li class="chapter-item expanded affix "><li class="part-title">Alpine Linux</li><li class="chapter-item expanded affix "><li class="part-title">BusyBox</li><li class="chapter-item expanded "><a href="busybox/addgroup.html">addgroup</a></li><li class="chapter-item expanded "><a href="busybox/adduser.html">adduser</a></li><li class="chapter-item expanded "><a href="busybox/arch.html">arch</a></li><li class="chapter-item expanded "><a href="busybox/base64.html">base64</a></li><li class="chapter-item expanded "><a href="busybox/basename.html">basename</a></li><li class="chapter-item expanded "><a href="busybox/cal.html">cal</a></li><li class="chapter-item expanded "><a href="busybox/cat.html">cat</a></li><li class="chapter-item expanded "><a href="busybox/chmod.html">chmod</a></li><li class="chapter-item expanded "><a href="busybox/chpasswd.html">chpasswd</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -156,6 +156,65 @@
 <h2 id="email"><a class="header" href="#email">Email</a></h2>
 <pre><code>mailto: qaq@qaq.land
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="codebrowser"><a class="header" href="#codebrowser">Codebrowser</a></h1>
+<p>项目能为 C/C++ 项目生成带有 clangd 智能提示与跳转效果的静态网页</p>
+<p>项目地址：<a href="https://github.com/KDAB/codebrowser">https://github.com/KDAB/codebrowser</a><br />
+修改主题：<a href="https://github.com/moodyhunter/codebrowser">https://github.com/moodyhunter/codebrowser</a><br />
+修改编译：<a href="https://github.com/KDAB/codebrowser/issues/107">https://github.com/KDAB/codebrowser/issues/107</a> (AlpineLinux)</p>
+<p>编译后用到的东西：</p>
+<ol>
+<li>codebrowser/generator/codebrowser_generator</li>
+<li>codebrowser/indexgenerator/codebrowser_indexgenerator</li>
+<li>codebrowser/data</li>
+</ol>
+<h2 id="codebrowser_generator"><a class="header" href="#codebrowser_generator">codebrowser_generator</a></h2>
+<pre><code class="language-sh">codebrowser_generator \
+        -a \
+        -o &lt;output_dir&gt; \
+        -b &lt;buld_dir&gt; \
+        -p &lt;projectname&gt;:&lt;source_dir&gt;[:&lt;revision&gt;] \
+        [-d &lt;data_url&gt;] \
+        [-e &lt;remote_path&gt;:&lt;source_dir&gt;:&lt;remote_url&gt;]
+</code></pre>
+<p>将源码编译解析为（包含 LSP 特效的） HTML</p>
+<ul>
+<li>-a 处理 compile_commands.json 包含的所有文件</li>
+<li>-o 生成 HTML 的输出文件夹，每个项目都会在此创建文件夹</li>
+<li>-b 指定包含有 compile_commands.json 的目录，一般源码目录相同，生成教程参考项目说明<sup class="footnote-reference"><a href="#1">1</a></sup></li>
+<li>-p 指定项目名称、源码的绝对路径、版本号（可无可有）</li>
+<li>-d 指定生成 HTML 的资源文件夹 data 的路径，默认为 <code>&lt;output_dir&gt;/data</code>（需要手动复制）</li>
+<li>-e 不懂，不管</li>
+</ul>
+<h2 id="codebrowser_indexgenerator"><a class="header" href="#codebrowser_indexgenerator">codebrowser_indexgenerator</a></h2>
+<pre><code class="language-sh">codebrowser_indexgenerator &lt;output_dir&gt; [-d data_url] [-p project_definition]
+</code></pre>
+<p>用来给上一步的 HTML 生成 index.html。</p>
+<p>参数都是上一步设置过的，此处只接上一步 -o 的 <code>&lt;output_dir&gt;</code> 即可</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-sh">
+# fn
+code_gen(){
+    BUILD=$SOURCE
+    codebrowser_generator -b $BUILD -a -o $OUTPUT -p $NAME:$SOURCE:$VERSION
+}
+
+VERSION=`git describe --always --tags`
+OUTPUT=/www/code
+
+# 1
+NAME=wld
+SOURCE=/home/qaq/wld
+code_gen
+
+# 2
+
+
+###
+codebrowser_indexgenerator $OUTPUT
+</code></pre>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>https://github.com/KDAB/codebrowser#compilation-database-compile_commandsjson</p>
+</div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="addgroup"><a class="header" href="#addgroup">addgroup</a></h1>
 <pre><code class="language-sh">$ addgroup [-g GID] [-S] [USER] GROUP
 </code></pre>
@@ -206,7 +265,7 @@
 <ul>
 <li>打印系统的架构</li>
 </ul>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
 <pre><code class="language-sh">lab:~$ arch
 x86_64
 </code></pre>
@@ -230,7 +289,7 @@ x86_64
 -w COL  Wrap lines at COL         换行宽度
         (default 76, 0 disables)
 </code></pre>
-<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
 <p>查看原文件</p>
 <pre><code class="language-sh">localhost:~$ cat .lesshst
 .less-history-file:
@@ -276,7 +335,7 @@ localhost:~$ base64 -d  &lt;(echo Lmxlc3MtaGlzdG9yeS1maWxlOgo=)
 <pre><code class="language-sh">-a              All arguments are FILEs
 -s SUFFIX       Remove SUFFIX (implies -a)
 </code></pre>
-<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
+<h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
 <p>示例 FILE 及路径：</p>
 <pre><code class="language-sh">localhost:~$ ls -l /etc/apk/keys/
 total 20
@@ -321,7 +380,7 @@ alpine-devel@lists.alpinelinux.org-61666e3f
 -m      Week starts on Monday
 -y      Display the entire year
 </code></pre>
-<h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
+<h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
 <p>默认只显示本月</p>
 <pre><code class="language-sh">localhost:~$ cal
     January 2023
@@ -455,7 +514,7 @@ cal 1 2023
 -e      ...and end lines with $
 -A      Same as -vte                显示不可打印字符
 </code></pre>
-<h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
+<h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
 <p>可以同时查看两个文件</p>
 <pre><code class="language-sh">localhost:~$ echo 111 &gt; 1
 localhost:~$ echo 222 &gt; 2
@@ -520,7 +579,7 @@ cat -e  .ash_history $
 -v      Verbose
 -f      Hide errors
 </code></pre>
-<h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
+<h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
 <p>使用 <code>ls</code> 命令的查看文件或目录的属性</p>
 <pre><code class="language-sh">localhost:~$ ls -al
 total 32
