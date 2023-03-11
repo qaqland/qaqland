@@ -1,6 +1,6 @@
-# About
+# About :D
 
-I am qaqland :D
+I am qaqland
 
 Here are my notes!
 

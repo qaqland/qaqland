@@ -4,7 +4,7 @@ language = "zh-Hans"
 multilingual = false
 src = "src"
 title = "qaqLand"
-
+description = "Site for qaqland and his venlafaxine."
 
 [output.html]
 git-repository-url = "https://github.com/qaqland/qaqland"

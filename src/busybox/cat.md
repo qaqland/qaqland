@@ -81,6 +81,27 @@ cat -e  .ash_history $
 
 其它不可打印字符，暂无示例
 
+## Example 2
+
+交互式地写入文件
+
+```sh
+lab:~$ cat > 123
+```
+
+回车之后开始编辑，完成后 CTRL+`d` 结束退出
+
+```sh
+lab:~$ cat > 123
+test1:123
+test2:456
+lab:~$ ls
+lab:~$ cat 123
+test1:123
+test2:456
+lab:~$
+```
+
 ## See also
 
 [sharkdp/bat: A cat(1) clone with wings.](https://github.com/sharkdp/bat)

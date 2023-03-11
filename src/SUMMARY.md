@@ -19,3 +19,4 @@
 - [cat](./busybox/cat.md)
 - [chmod](./busybox/chmod.md)
 - [chpasswd](./busybox/chpasswd.md)
+- [clear](./busybox/clear.md)
