@@ -8,7 +8,7 @@
 
         <!-- Custom HTML head -->
         
-        <meta name="description" content="">
+        <meta name="description" content="Site for qaqland and his venlafaxine.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html">About</a></li><li class="chapter-item expanded affix "><li class="part-title">Notes</li><li class="chapter-item expanded "><a href="../codebrowser.html">Codebrowser</a></li><li class="chapter-item expanded affix "><li class="part-title">Alpine Linux</li><li class="chapter-item expanded affix "><li class="part-title">BusyBox</li><li class="chapter-item expanded "><a href="../busybox/addgroup.html">addgroup</a></li><li class="chapter-item expanded "><a href="../busybox/adduser.html">adduser</a></li><li class="chapter-item expanded "><a href="../busybox/arch.html">arch</a></li><li class="chapter-item expanded "><a href="../busybox/base64.html">base64</a></li><li class="chapter-item expanded "><a href="../busybox/basename.html">basename</a></li><li class="chapter-item expanded "><a href="../busybox/cal.html">cal</a></li><li class="chapter-item expanded "><a href="../busybox/cat.html">cat</a></li><li class="chapter-item expanded "><a href="../busybox/chmod.html">chmod</a></li><li class="chapter-item expanded "><a href="../busybox/chpasswd.html" class="active">chpasswd</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html">About</a></li><li class="chapter-item expanded affix "><li class="part-title">Notes</li><li class="chapter-item expanded "><a href="../codebrowser.html">Codebrowser</a></li><li class="chapter-item expanded affix "><li class="part-title">Alpine Linux</li><li class="chapter-item expanded affix "><li class="part-title">BusyBox</li><li class="chapter-item expanded "><a href="../busybox/addgroup.html">addgroup</a></li><li class="chapter-item expanded "><a href="../busybox/adduser.html">adduser</a></li><li class="chapter-item expanded "><a href="../busybox/arch.html">arch</a></li><li class="chapter-item expanded "><a href="../busybox/base64.html">base64</a></li><li class="chapter-item expanded "><a href="../busybox/basename.html">basename</a></li><li class="chapter-item expanded "><a href="../busybox/cal.html">cal</a></li><li class="chapter-item expanded "><a href="../busybox/cat.html">cat</a></li><li class="chapter-item expanded "><a href="../busybox/chmod.html">chmod</a></li><li class="chapter-item expanded "><a href="../busybox/chpasswd.html" class="active">chpasswd</a></li><li class="chapter-item expanded "><a href="../busybox/clear.html">clear</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -151,6 +151,26 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="chpasswd"><a class="header" href="#chpasswd">chpasswd</a></h1>
+<pre><code class="language-sh">$ chpasswd [-me] [-c ALG] [-R DIR]
+</code></pre>
+<p>Read user:password from stdin and update /etc/passwd</p>
+<ul>
+<li>从 stdin 读取 user:password 更新 <code>/etc/passwd</code></li>
+</ul>
+<pre><code>-e      Supplied passwords are in encrypted form	指定 stdin 密码是加密过的
+-m      Encrypt using md5, not des					指定加密为 md5
+-c ALG  des,md5,sha256/512 (default sha512)			指定加密算法
+-R DIR  Directory to chroot into					修改离线系统的用户密码
+</code></pre>
+<h2 id="chpasswd-vs-passwd"><a class="header" href="#chpasswd-vs-passwd">chpasswd vs passwd</a></h2>
+<p>This command is intended to be used in a large system environment where many accounts are created at a single time.
+passwd is (in my experience) normally used interactively for a single user.<br />
+<a href="https://unix.stackexchange.com/questions/345459/whats-the-difference-between-passwd-and-chpasswd">- <em>What's the difference between 'passwd' and 'chpasswd'?</em></a></p>
+<p>前者是命令行控制的批量修改，后者适合个人交互式设置。</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<p>:D</p>
+<h2 id="see-also"><a class="header" href="#see-also">See also</a></h2>
+<p><a href="./passwd.html">passwd</a></p>
 
                     </main>
 
@@ -160,6 +180,9 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
+                            <a rel="next" href="../busybox/clear.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -171,6 +194,9 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
+                    <a rel="next" href="../busybox/clear.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
