@@ -17,13 +17,13 @@ or [Email](mailto:qaq@qaq.land).
 - **busybox**  
   Wiki for busybox
 
-### Link Related
+### Related Websites
 
 - <https://qaq.land>
 - <https://github.com/qaqland>
 - <https://bbb.qaq.land>
 - <https://hash.qaq.land>
 
-### Link Exchange ❤️
+### Blogroll Exchange ❤️
 
 - _夜鹰的巢_ <https://acyanbird.com/>
