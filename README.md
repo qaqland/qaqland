@@ -26,6 +26,3 @@ or [Email](mailto:qaq@qaq.land).
 - [2023](when/2023.md)
 - [2024](when/2024.md)
 
-### Blogroll Exchange ❤️
-
-- _夜鹰的巢_ <https://acyanbird.com/>
