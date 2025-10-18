@@ -1,0 +1,5 @@
+body {
+	width: min(35em, 85vw);
+	margin: 0 auto;
+	font-family: Tahoma, Verdana, Arial, sans-serif;
+}
