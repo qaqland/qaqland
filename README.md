@@ -17,7 +17,9 @@ Currently learning Wayland and Git.
 ## Friends
 
 - [Lindsay](https://lin.moe/)
-- [夜鹰的巢](https://acyanbird.tech/)
+- [小猫](https://sinofine.me/)
+- [Betterr](https://blog.udp0.com/)
+- [Zhaose](https://blog.zhaose.cyou/)
 
 ---
 
