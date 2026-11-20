@@ -5,7 +5,8 @@ Currently learning Wayland and Git.
 
 - <https://github.com/qaqland>
 - <https://gitlab.alpinelinux.org/qaqland>
-- <https://hash.qaq.land/>
+- <https://wip.qaq.land/>
+- <https://hash.qaq.land/> (Archived)
 - <mailto:qaq@qaq.land>
 
 ## IRC
